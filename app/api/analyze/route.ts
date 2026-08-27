@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fetchWalletData } from "@/lib/moralis";
+import { fetchWalletData } from "@/lib/alchemy";
 import { calculateRisk } from "@/lib/riskEngine";
 
 export async function POST(req: Request) {
@@ -15,7 +15,11 @@ export async function POST(req: Request) {
 
     const walletData = await fetchWalletData(address, chain);
 
-    const balance = Number(walletData.balance) / 10 ** 18;
+    const balanceHex = walletData.result;
+
+    const balanceWei = parseInt(balanceHex, 16);
+
+    const balance = balanceWei / 10 ** 18;
 
     const risk = calculateRisk(balance);
 
