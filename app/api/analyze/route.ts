@@ -13,9 +13,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const walletData = await fetchWalletData(address, chain);
-
-    const balanceHex = walletData.result;
+    const walletData = awconst walletData = await fetchWalletData(address);
 
     const balanceWei = parseInt(balanceHex, 16);
 
