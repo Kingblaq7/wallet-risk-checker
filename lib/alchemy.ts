@@ -1,9 +1,6 @@
 const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
 
-export async function fetchWalletData(
-  address: string,
-  chain: string
-) {
+export async function fetchWalletData(address: string) {
   const response = await fetch(
     `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
     {
@@ -20,9 +17,11 @@ export async function fetchWalletData(
     }
   );
 
-  if (!response.ok) {
-    throw new Error("Unable to fetch wallet");
+  const data = await response.json();
+
+  if (data.error) {
+    throw new Error(data.error.message);
   }
 
-  return response.json();
+  return data;
 }
