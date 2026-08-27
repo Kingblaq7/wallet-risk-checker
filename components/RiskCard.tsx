@@ -1,33 +1,17 @@
-type RiskCardProps = {
-  score: number;
-  status: string;
-  message: string;
-};
-
-export default function RiskCard({
-  score,
-  status,
-  message,
-}: RiskCardProps) {
+export default function RiskCard({ risk }: { risk: any }) {
   return (
-    <div className="mt-8 rounded-xl bg-[#161b22] p-6 border border-gray-800">
-      <h2 className="text-xl font-bold text-green-400 mb-4">
-        Wallet Risk Report
+    <div className="rounded-xl bg-zinc-900 p-6">
+      <h2 className="text-2xl font-bold">
+        Risk Score: {risk.score}/100
       </h2>
 
-      <div className="space-y-3">
-        <p>
-          <span className="font-semibold">Risk Score:</span> {score}/100
-        </p>
+      <p className="mt-3 text-green-400">
+        Status: {risk.status}
+      </p>
 
-        <p>
-          <span className="font-semibold">Status:</span> {status}
-        </p>
-
-        <p>
-          <span className="font-semibold">Summary:</span> {message}
-        </p>
-      </div>
+      <p className="mt-2 text-gray-400">
+        {risk.message}
+      </p>
     </div>
   );
 }
