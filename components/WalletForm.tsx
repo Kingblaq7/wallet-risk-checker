@@ -61,12 +61,12 @@ export default function WalletForm() {
         ))}
       </select>
 
-      <button
-        onClick={analyzeWallet}
-        className="w-full rounded-lg bg-green-500 p-4 font-bold text-black"
-      >
-        Analyze Wallet
-      </button>
+     <button
+  onClick={analyzeWallet}
+  className="w-full rounded-lg bg-green-500 p-4 font-bold text-black"
+>
+  Analyze Wallet
+</button>
 
       {loading && <Loader />}
 
